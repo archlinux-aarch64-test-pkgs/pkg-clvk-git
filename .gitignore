@@ -1,0 +1,10 @@
+*.pkg.tar.*
+pkg/
+src/
+clvk/
+clspv/
+opencl-headers/
+spirv-headers/
+spirv-llvm-translator/
+spirv-tools/
+clspv.patch

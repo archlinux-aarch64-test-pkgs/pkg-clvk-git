@@ -1,0 +1,12 @@
+post_install() {
+    cat <<'EOF'
+==============================================================================
+To use clvk, log out and back in, or source /etc/profile.d/clvk.sh in the
+terminal where it will be used.
+==============================================================================
+EOF
+}
+
+post_upgrade() {
+    post_install
+}
