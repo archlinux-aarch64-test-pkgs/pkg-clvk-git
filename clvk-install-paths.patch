@@ -1,0 +1,26 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 1b29462..470326d 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -172,7 +172,9 @@ else()
+ else()
+   if (CLVK_COMPILER_AVAILABLE)
+     add_dependencies(OpenCL-objects clspv)
++    set(CLVK_DEFAULT_CLSPV_BINARY_PATH "$<TARGET_FILE:clspv>" CACHE STRING
++      "Default path to the clspv compiler")
+     target_compile_definitions(clvk-config-definitions INTERFACE
+-      DEFAULT_CLSPV_BINARY_PATH="$<TARGET_FILE:clspv>")
++      DEFAULT_CLSPV_BINARY_PATH="${CLVK_DEFAULT_CLSPV_BINARY_PATH}")
+   endif()
+ endif()
+@@ -182,7 +182,9 @@ if (CLVK_COMPILER_AVAILABLE AND CLVK_ENABLE_SPIRV_IL)
+ if (CLVK_COMPILER_AVAILABLE AND CLVK_ENABLE_SPIRV_IL)
+   add_dependencies(OpenCL-objects llvm-spirv)
++  set(CLVK_DEFAULT_LLVMSPIRV_BINARY_PATH "$<TARGET_FILE:llvm-spirv>" CACHE STRING
++    "Default path to the llvm-spirv converter")
+   set_target_properties(llvm-spirv PROPERTIES RUNTIME_OUTPUT_DIRECTORY
+     ${CMAKE_BINARY_DIR})
+   target_compile_definitions(clvk-config-definitions INTERFACE
+-    DEFAULT_LLVMSPIRV_BINARY_PATH="$<TARGET_FILE:llvm-spirv>")
++    DEFAULT_LLVMSPIRV_BINARY_PATH="${CLVK_DEFAULT_LLVMSPIRV_BINARY_PATH}")
+ endif()
